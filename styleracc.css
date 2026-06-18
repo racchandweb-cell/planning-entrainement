@@ -1,0 +1,499 @@
+/* ==========================================================================
+   1. POLICES & CONFIGURATION INITIALE (Charte RACC Standard & Modernisée)
+   ========================================================================== */
+@font-face {
+    font-family: 'AboveBold';
+    src: url('Above Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'AvantGarde';
+    src: url('ITCAvantGardeStd-Bk.ttf') format('truetype');
+}
+
+:root {
+    /* Palette de couleurs officielle RACC */
+    --bg-primary: #FAF8F8;          /* Teinte 1 - Fond principal de la page */
+    --bg-secondary: #FFFFFF;        /* Blanc pur pour les cartes et conteneurs */
+    --border-color: #E2E8F0;        /* Séparateur discret */
+    
+    /* Nuances de gris/bleutés issues de la charte */
+    --text-primary: #0B1215;        /* Teinte 2-900 (Titres majeurs) */
+    --text-secondary: #2A424B;      /* Teinte 2-600 (Corps de texte et labels) */
+    --text-muted: #5F7A86;          /* Teinte 2-400 (Sous-titres et icônes) */
+    
+    /* Identité Club */
+    --racc-green-official: #008440; /* Teinte 3-500 - Vert Club */
+    --racc-green-dark: #003218;     /* Teinte 3-900 - Vert Profond */
+    --racc-green-light: #B9E100;    /* Teinte 4-500 - Vert Éclatant / Fluo */
+    --racc-green-light-bg: #E6F5EE; /* Teinte 3-50  - Fond de cellule adouci */
+    --racc-yellow-bg: #FBFEE6;      /* Teinte 4-50  - Alerte / Highlight doux */
+    --racc-red: #FE0000;            /* Rouge Action */
+
+    /* Filtres SVG pour l'ancienne carte de liens */
+    --filter-green: invert(33%) sepia(87%) saturate(1469%) hue-rotate(124deg) brightness(92%) contrast(102%);
+    --filter-white: brightness(0) invert(1);
+    --filter-red-official: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
+
+    /* Catégories du planning - Typologies d'équipes */
+    --color-u10-u13: var(--racc-green-official);
+    --color-u14-u17: #DCAB17;      /* Teinte 6-500 - Jaune/Ambre warm */
+    --color-u18-seniors: #0284C7;  /* Bleu compétition */
+    --color-loisirs: #7C3AED;     /* Violet loisirs */
+    --color-default: var(--text-muted);
+
+    /* Animation globale */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: 'AvantGarde', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: flex-start; 
+    min-height: 100vh;
+    padding: 40px 20px;     
+    position: relative;
+    color: var(--text-secondary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   2. ANCIENS STYLES : CARTE DE LIENS (Conservés et modernisés graphiquement)
+   ========================================================================== */
+.card-container {
+    background-color: var(--text-primary);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 24px;
+    padding: 35px 25px;
+    box-shadow: 0 20px 40px rgba(11, 18, 21, 0.15);
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+.avatar img { width: 140px; height: 140px; border-radius: 20px; object-fit: cover; margin-bottom: 20px; }
+.name { font-family: 'AboveBold', sans-serif; font-size: 24px; margin: 0 0 8px 0; letter-spacing: 1px; text-transform: uppercase; }
+.location, .bio { font-size: 14px; opacity: 0.75; margin: 5px 0; }
+.social-grid { display: flex; justify-content: center; gap: 16px; margin: 20px 0 25px 0; }
+.social-grid img { width: 24px; height: 24px; filter: var(--filter-green); transition: var(--transition-smooth); }
+.social-grid a:hover img { filter: var(--filter-white); transform: translateY(-2px); }
+.social-grid a:active img { filter: var(--filter-red-official); transform: scale(0.95); }
+.links-stack { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.link-item { background: #18252A; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; text-decoration: none; color: #FFFFFF; transition: var(--transition-smooth); min-height: 64px; border: 1px solid rgba(255,255,255,0.03); }
+.link-item:hover { background: #22343B; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.link-content { display: flex; align-items: center; gap: 15px; min-width: 0; flex: 1; text-align: left; }
+.picto-box { width: 40px; height: 40px; background-color: var(--racc-green-official); border-radius: 10px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: var(--transition-smooth); }
+.picto-box img { width: 20px; height: 20px; filter: var(--filter-white); }
+.link-item:hover .picto-box { background-color: var(--racc-green-dark); }
+.link-title { font-weight: bold; font-size: 13px; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; margin: 0; }
+.arrow { font-size: 18px; opacity: 0.4; transition: var(--transition-smooth); }
+.link-item:hover .arrow { opacity: 1; transform: translateX(3px); }
+.footer-credits { width: 100%; text-align: center; padding: 20px 0; margin-top: 40px; }
+.footer-credits p { font-family: 'AvantGarde', sans-serif; font-weight: 500; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin: 0; }
+.link-footer { color: var(--text-secondary); text-decoration: underline; font-weight: bold; transition: var(--transition-smooth); }
+.link-footer:hover { color: var(--racc-green-official); }
+
+/* ==========================================================================
+   3. NOUVEAUX STYLES : STRUCTURE DU PLANNING (schedule.html)
+   ========================================================================== */
+.schedule-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header.schedule-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CORRECTIF TAILLE LOGO (SVG & PNG) */
+.logo-container {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 4px 12px rgba(0, 132, 64, 0.12));
+}
+.logo-container svg, 
+.logo-container img {
+    width: auto;
+    height: 90px;
+    max-width: 100%;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+.logo-container:hover svg,
+.logo-container:hover img {
+    transform: scale(1.04);
+}
+
+.logo-tag {
+    display: inline-block;
+    background: var(--racc-green-light-bg);
+    color: var(--racc-green-official);
+    padding: 0.4rem 1.2rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 132, 64, 0.12);
+    text-transform: uppercase;
+}
+
+h1.schedule-title {
+    font-family: 'AboveBold', sans-serif;
+    font-size: 2.8rem;
+    margin: 0.25rem 0;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+/* Barre d'outils et de filtres */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+    padding: 0.85rem 1.25rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 18px rgba(11, 18, 21, 0.02);
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 290px;
+    max-width: 440px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.6rem;
+    background: var(--bg-primary);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: 'AvantGarde', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.search-box input:focus {
+    border-color: rgba(0, 132, 64, 0.3);
+    background: var(--bg-secondary);
+    box-shadow: 0 0 0 4px rgba(0, 132, 64, 0.06);
+}
+
+.search-box::before {
+    content: "🔍";
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    opacity: 0.6;
+}
+
+.view-switch {
+    display: flex;
+    background: #F1F4F2;
+    padding: 0.3rem;
+    border-radius: 12px;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 700;
+    padding: 0.5rem 1.4rem;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: 'AvantGarde', sans-serif;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.view-btn.active {
+    background: var(--racc-green-official);
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 132, 64, 0.15);
+}
+
+.view-btn:not(.active):hover {
+    background: rgba(0,0,0,0.04);
+    color: var(--text-primary);
+}
+
+.view-container {
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   4. LA GRILLE DU PLANNING (TABLEAU INTERACTIF EXTRÊMEMENT ACCESSIBLE)
+   ========================================================================== */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    box-shadow: 0 12px 36px rgba(11, 18, 21, 0.03);
+}
+
+table.schedule-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    min-width: 1150px;
+}
+
+/* Entêtes horizontales (Gymnases) */
+table.schedule-grid th {
+    background: var(--racc-green-official);
+    padding: 1.25rem 1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FFFFFF;
+    border-bottom: 3px solid var(--racc-green-dark);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+}
+
+table.schedule-grid th:last-child {
+    border-right: none;
+}
+
+/* Première case en haut à gauche (Intersection Jour/Gymnase) */
+table.schedule-grid th:first-child {
+    background: var(--racc-green-dark);
+    color: #FFFFFF;
+    z-index: 4;
+    width: 120px;
+    border-right: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+table.schedule-grid td {
+    padding: 0.9rem 0.65rem;
+    border-bottom: 1px solid #E2E8F0;
+    border-right: 1px solid #F1F5F9;
+    vertical-align: top;
+    width: calc((100% - 120px) / 7);
+}
+
+/* Première colonne verticale (Jours de la semaine) sticky */
+table.schedule-grid td:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--racc-green-light-bg);
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--racc-green-dark);
+    z-index: 3;
+    border-right: 2px solid rgba(0, 132, 64, 0.15);
+    text-align: center;
+    vertical-align: middle;
+    padding: 1rem;
+    width: 120px;
+    letter-spacing: 0.04em;
+}
+
+/* Cartes de créneaux (Slots) */
+.slot-card {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(11, 18, 21, 0.06);
+    border-left: 5px solid var(--color-default);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 4px rgba(11, 18, 21, 0.01);
+}
+
+.slot-card:last-child {
+    margin-bottom: 0;
+}
+
+.slot-card:hover {
+    transform: translateY(-2px);
+    background: var(--bg-secondary);
+    box-shadow: 0 6px 16px rgba(0, 132, 64, 0.08);
+    border-color: rgba(0, 132, 64, 0.15);
+}
+
+/* Séparation Intérieure Subtile & Design des éléments du Créneau */
+.slot-time {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px dashed #E2E8F0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+}
+
+.slot-time::before {
+    content: "🕒";
+    font-size: 0.75rem;
+}
+
+.slot-team {
+    color: var(--text-secondary);
+    font-weight: 600;
+    line-height: 1.4;
+    font-size: 0.85rem;
+}
+
+/* Identification de couleur par bordure de catégorie */
+.cat-u10-u13 { border-left-color: var(--color-u10-u13); }
+.cat-u14-u17 { border-left-color: var(--color-u14-u17); }
+.cat-u18-seniors { border-left-color: var(--color-u18-seniors); }
+.cat-loisirs { border-left-color: var(--color-loisirs); }
+
+/* ==========================================================================
+   5. VUE LISTE ALTERNATIVE (Cards d'affichage fluide)
+   ========================================================================== */
+.list-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.day-group {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 16px rgba(11, 18, 21, 0.01);
+    transition: var(--transition-smooth);
+}
+
+.day-group:hover {
+    box-shadow: 0 8px 24px rgba(11, 18, 21, 0.03);
+}
+
+.day-title {
+    font-family: 'AboveBold', sans-serif;
+    font-size: 1.3rem;
+    color: var(--racc-green-official);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--racc-green-light-bg);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.list-item {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(11, 18, 21, 0.05);
+    border-left: 5px solid var(--color-default);
+    transition: var(--transition-smooth);
+}
+
+.list-item:hover {
+    background: var(--bg-primary);
+    transform: translateX(4px);
+}
+
+.list-item-venue {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ==========================================================================
+   6. LÉGENDE & PANNEAUX INFOS (Bords arrondis modernes)
+   ========================================================================== */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    background: var(--bg-secondary);
+    padding: 1.25rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(11, 18, 21, 0.01);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-secondary);
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.info-panel {
+    background: var(--racc-green-light-bg);
+    border: 1px solid rgba(0, 132, 64, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    width: 100%;
+    color: var(--racc-green-dark);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    h1.schedule-title { font-size: 2rem; }
+    .controls { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+    .search-box { max-width: none; }
+    body { padding: 20px 12px; }
+}
