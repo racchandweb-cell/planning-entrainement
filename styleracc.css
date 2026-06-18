@@ -293,11 +293,14 @@ table.schedule-grid th:last-child {
     border-right: none;
 }
 
-/* Première case en haut à gauche (Intersection Jour/Gymnase) */
+/* Première case en haut à gauche (Intersection Jour/Gymnase) - RESTE FIXE ABSOLU */
 table.schedule-grid th:first-child {
+    position: sticky;
+    left: 0;
+    top: 0;
     background: var(--racc-green-dark);
     color: #FFFFFF;
-    z-index: 4;
+    z-index: 5; /* Priorité absolue au-dessus de tout */
     width: 120px;
     border-right: 2px solid rgba(0, 0, 0, 0.15);
 }
@@ -318,7 +321,7 @@ table.schedule-grid td:first-child {
     font-weight: 800;
     font-size: 0.9rem;
     color: var(--racc-green-dark);
-    z-index: 3;
+    z-index: 3; /* Juste sous la case "Jour" */
     border-right: 2px solid rgba(0, 132, 64, 0.15);
     text-align: center;
     vertical-align: middle;
