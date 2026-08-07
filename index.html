@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créneaux d'entraînement RACC - Saison 2026-2027 (Officiel)</title>
-    <meta name="description" content="Tableau interactif et liste des créneaux d'entraînement officiels du RACC par gymnase et par jour de la semaine pour la saison 2026-2027.">
-    <!-- Link to the custom styleracc.css -->
+    <title>Créneaux d'entraînement RACC - Saison 2026-2027</title>
+    <meta name="description" content="Tableau interactif et liste des créneaux d'entraînement du RACC par gymnase et par jour de la semaine pour la saison 2026-2027.">
+    
     <link rel="stylesheet" href="styleracc.css">
 </head>
 <body>
 
     <div class="schedule-container">
-        <header class="schedule-header">
-            <div class="logo-container">
-                <img src="VERT_RACC_LOGO.png" alt="RACC Logo" onerror="this.style.display='none';">
-            </div>
-            <span class="logo-tag">RACC HANDBALL</span>
-            <h1 class="schedule-title">Créneaux d'Entraînement</h1>
-            <p>Saison 2026-2027 (Officiel)</p>
-        </header>
+        <header>
+        <div class="logo-container">
+            <img src="RACC_LOGO-01.svg" alt="RACC Logo" class="logo-img">
+        </div>
+        <span class="logo-tag">RACC HANDBALL</span>
+        <h1>Créneaux d'Entraînement</h1>
+        <p>Saison 2026-2027</p>
+    </header>
 
         <div class="controls">
             <div class="search-box">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <!-- 1. GRID VIEW -->
+<!-- 1. GRID VIEW -->
         <div id="grid-view-container" class="view-container">
             <div class="table-responsive">
                 <table class="schedule-grid">
@@ -205,14 +205,6 @@
                 <span>Loisirs &amp; Autres</span>
             </div>
         </div>
-
-        <div class="info-panel">
-            <span style="font-size: 1.5rem;">💡</span>
-            <div style="font-size: 0.9rem; line-height: 1.4;">
-                Ce tableau utilise la feuille de style <strong>styleracc.css</strong> et s'adapte automatiquement à votre écran. Sur smartphone, la vue liste est activée par défaut pour un confort de lecture optimal.
-            </div>
-        </div>
-    </div>
 
     <script>
         // Data injected from Python
